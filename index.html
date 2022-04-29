@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>that which is left.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
+    <style>
+        html {
+            background-color: black;
+            color: white;
+            font-family: 'EB Garamond', serif;
+            font-size: 24px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="creek"></div>
+
+</body>
+<script>
+    var creek = document.getElementById("creek");
+    var numLine = 10;
+    var currentLine = 0;
+    var interval;
+
+    interval = setInterval(function () {
+        var word = document.createElement("span")
+        word.innerText = "fig ";
+        creek.append(word)
+        currentLine++;
+        if (currentLine >= numLine) {
+            clearInterval(interval);
+        }
+    }, 400)
+</script>
+
+</html>
