@@ -5,39 +5,195 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>that which is left.</title>
+    <title>THE CREEK GENERATOR</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro&display=swap" rel="stylesheet">
+
     <style>
         html {
             background-color: black;
             color: white;
-            font-family: 'EB Garamond', serif;
+            font-family: 'Crimson Pro', serif;
             font-size: 24px;
+            height: 100%;
+            width: 100%;
+            padding: 0;
+            margin: 0;
+        }
+
+        button {
+            background-color: black;
+            color: white;
+            font-family: 'Crimson Pro', serif;
+            font-size: 1em;
+            border: none;
+        }
+
+        .center {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .container {
+            display: flex;
+            height: 100vh;
+            width: 100vw;
+            flex-direction: column;
+        }
+
+        .creek_text {
+            background-color: black;
+            color: white;
+            font-family: 'Crimson Pro', serif;
+            font-size: 24px;
+        }
+
+        .projector {
+            padding-top: 20%;
+            justify-content: center;
+            align-items: center;
+            display: flex;
+            width: 100%;
+            font-size: 1.25em;
+            text-align: center;
         }
     </style>
 </head>
 
 <body>
-    <div id="creek"></div>
+
+    <div class="container">
+        <div id="blinking_title">
+            <div class="projector">THE CREEK GENERATOR</div>
+        </div>
+        <div id="hide_projector"></div>
+        <div class="creek_text">
+            <div id="creek"></div>
+            <div id="poetic_interlude"></div>
+        </div>
+    </div>
+
+    <div class="center">
+        <button; onclick="hideProjector();beginGenerator();style.display = 'none'" ;>Click here to begin</button>
+    </div>
+
 
 </body>
-<script>
-    var creek = document.getElementById("creek");
-    var numLine = 10;
-    var currentLine = 0;
-    var interval;
 
-    interval = setInterval(function () {
-        var word = document.createElement("span")
-        word.innerText = "fig ";
-        creek.append(word)
-        currentLine++;
-        if (currentLine >= numLine) {
-            clearInterval(interval);
-        }
-    }, 400)
+<!-- <script>
+    function setStage() {
+        document.body.style.backgroundImage = "assets/creek-background.jpg";
+    }
+</script> -->
+
+<script>
+    function getRndInteger(min, max) {
+        return Math.floor(Math.random() * (max - min)) + min;
+    }
 </script>
+
+<script>
+    var flickerSpeeds = [500, 1000, 250, 1000, 2000, 5000, 1000, 2000, 7000, 5000];
+    flicker = flickerSpeeds[getRndInteger(0, 9)]; // every 1000 == 1 second, adjust to suit
+    index = 100;
+    while (index > 0) {
+        var t = setInterval(function () {
+            var ele = document.getElementById("blinking_title");
+            ele.style.visibility = (ele.style.visibility == 'hidden' ? '' : 'hidden');
+        }, flicker);
+        flicker = flickerSpeeds[getRndInteger(0, 7)];
+        index--;
+    }
+</script>
+
+<script>
+    function hideProjector() {
+        var x = document.getElementById("blinking_title");
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
+    }
+</script>
+
+<script>
+    function beginGenerator() {
+        const creekElements = ['leaf', 'sapling', 'bark', 'silt', 'water', 'soil', 'faun',
+            'deer', 'spider', 'ivy', 'drosera', 'bleedingheart', 'roots',
+            'bark', 'flow', 'web', 'sap', 'bee', 'bramble', 'shrub', 'rot',
+            'pine', 'oak', 'owl', 'maple', 'pollen', 'stem', 'leaf', 'trunk',
+            'silt', 'geranium', 'stick', 'goldenrod', 'foxglove', 'aster',
+            'beech', 'ash', 'elm', 'fir', 'hemlock', 'hickory', 'pine',
+            'spruce', 'thorn', 'walnut', 'willow', 'fox', 'squirrel', 'bat',
+            'hare', 'mouse', 'possum', 'daggermoth', 'tick', 'orbweaver',
+            'firefly', 'fishingspider', 'butterfly', 'pebble', 'petal',
+            'mycelium', 'inkycap', 'detritus', 'worm', 'ant', 'sand', 'loam',
+            'blacktrumpet', 'falsemorel', 'breeze', 'tunnel'];
+
+        var elementsDepth = creekElements.length;
+
+        var creek = document.getElementById("creek");
+        var landscape = 100;
+        var currentLine = 0;
+        var interval;
+        var generation = 0;
+
+
+        var rand = getRndInteger(0, elementsDepth);
+        // console.log("BEGIN GENERATOR");
+        // console.log("RAND INT", rand);
+
+        i = 0;
+        timer = 0;
+        interval = setInterval(function () {
+            var word = document.createElement("span");
+            word.innerText = (creekElements[rand] + " ");
+            elementString = String(word);
+            var lineWidth = (landscape / word.innerText.length);
+            // console.log("WORD", word.innerText);
+            // console.log("WORD LENGTH", word.innerText.length);
+            // console.log("LINE WIDTH", lineWidth);
+            generation = lineWidth;
+            creek.append(word);
+            currentLine++;
+            // console.log('CURRENT LINE', currentLine);
+            if (currentLine >= lineWidth) {
+                // console.log('IN IF LOOP');
+                clearInterval(interval);
+                currentLine = 0;
+                var lineBreak = document.createElement("br");
+                creek.append(lineBreak);
+            }
+        }, 400)
+        setInterval(beginGenerator, 300 * landscape);
+    }
+</script>
+
+<!-- <script>
+
+    var interlude = "A generating space.";
+    var interludePieces = interlude.split("");
+    var loopTimer;
+
+    console.log("TEXT", interlude);
+    console.log("ARRAY", interludePieces);
+    console.log("LENGTH", interludePieces.length);
+
+    function reveal() {
+        if (interludePieces.length > 0) {
+            document.getElementById("poetic_interlude").innerHTML += interludePieces.shift();
+        } else {
+            clearTimeout(loopTimer);
+            return false;
+        }
+        loopTimer = setTimeout("reveal()", 100);
+    }
+    reveal();
+
+</script> -->
 
 </html>
