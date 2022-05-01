@@ -3,7 +3,7 @@
 The Creek Generator is a generating space.
 
 ## Structure
-When the program is run, the creek is generated element by element. At various points, dependent on drawing a random number, poetic interludes appear. these, too, change depending on chance.
+When the program is run, the creek is generated element by element. At various points, dependent on drawing a random number, poetic interludes appear. These, too, change depending on chance.
 
 ## How to run
 
@@ -22,4 +22,4 @@ TODO
 The latest edition consumes `twined.`, the introduction to a larger collection of poems.
 
 ### Commands
-The original generator consumed `commands.`, first published in [DIAGRAM](http://thediagram.com/20_6/wardrop.html), as its source material.
+The original generator consumed `commands.`, first published in DIAGRAM, as its source material.
