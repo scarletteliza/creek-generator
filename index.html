@@ -12,9 +12,11 @@
 
     <style>
         html {
-            background-color: black;
+            background: url(assets/creek-background.jpg);
+            background-repeat: no-repeat;
+            background-size: auto;
             color: white;
-            font-family: 'Crimson Pro', serif;
+            font-family: "Crimson Pro", serif;
             font-size: 24px;
             height: 100%;
             width: 100%;
@@ -23,9 +25,8 @@
         }
 
         button {
-            background-color: black;
             color: white;
-            font-family: 'Crimson Pro', serif;
+            font-family: "Crimson Pro", serif;
             font-size: 1em;
             border: none;
         }
@@ -42,10 +43,12 @@
             height: 100vh;
             width: 100vw;
             flex-direction: column;
+            text-overflow: clip;
+            white-space: nowrap;
+            overflow: hidden;
         }
 
         .creek_text {
-            background-color: black;
             color: white;
             font-family: 'Crimson Pro', serif;
             font-size: 24px;
@@ -96,17 +99,19 @@
 </script>
 
 <script>
-    var flickerSpeeds = [500, 1000, 250, 1000, 2000, 5000, 1000, 2000, 7000, 5000];
-    flicker = flickerSpeeds[getRndInteger(0, 9)]; // every 1000 == 1 second, adjust to suit
-    index = 100;
-    while (index > 0) {
-        var t = setInterval(function () {
-            var ele = document.getElementById("blinking_title");
-            ele.style.visibility = (ele.style.visibility == 'hidden' ? '' : 'hidden');
-        }, flicker);
-        flicker = flickerSpeeds[getRndInteger(0, 7)];
-        index--;
-    }
+    (function titleFlicker() {
+        var flickerSpeeds = [500, 1000, 250, 1000, 2000, 5000, 1000, 2000, 7000, 5000];
+        flicker = flickerSpeeds[getRndInteger(0, 9)];
+        index = 100;
+        while (index > 0) {
+            var t = setInterval(function () {
+                var ele = document.getElementById("blinking_title");
+                ele.style.visibility = (ele.style.visibility == 'hidden' ? '' : 'hidden');
+            }, flicker);
+            flicker = flickerSpeeds[getRndInteger(0, 7)];
+            index--;
+        }
+    })()
 </script>
 
 <script>
@@ -167,9 +172,9 @@
                 currentLine = 0;
                 var lineBreak = document.createElement("br");
                 creek.append(lineBreak);
+                beginGenerator();
             }
         }, 400)
-        setInterval(beginGenerator, 300 * landscape);
     }
 </script>
 
