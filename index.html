@@ -12,7 +12,8 @@
 
     <style>
         html {
-            background: url(assets/creek-background85.jpg);
+            /* background: url(assets/creek-background85.jpg); */
+            background-color: black;
             background-repeat: no-repeat;
             background-size: auto;
             color: white;
@@ -25,9 +26,10 @@
         }
 
         button {
-            color: white;
+            background-color: black;
+            color: grey;
             font-family: "Crimson Pro", serif;
-            font-size: 1em;
+            font-size: 0.75em;
             border: none;
         }
 
@@ -80,7 +82,7 @@
     </div>
 
     <div id="start_button" class="center">
-        <button onclick="main()">Click here to begin</button>
+        <button onclick="main()">CLICK TO BEGIN</button>
     </div>
 
 </body>
@@ -129,12 +131,13 @@
         hideProjector();
         setInterval(function () {
             var rand = getRndInteger(0, 10);
-            console.log("RAND ", rand%2 == 0);
             if (rand % 2) {
-                beginInterlude();
+                console.log("GENERATOR! ", rand);
+                beginGenerator();
             }
             else {
-                beginGenerator();
+                console.log("INTERLUDE! ", rand);
+                beginInterlude();
             }
         }, 10000)
     }
@@ -168,6 +171,7 @@
         var lineWidth = (landscape / wordText.length);
         while (currentLine <= lineWidth) {
             var word = document.createElement("span");
+            word.style.color = "grey";
             word.innerText = wordText;
             console.log('APPENDING ', word);
             creek.append(word);
@@ -183,17 +187,48 @@
 
 <script>
     function beginInterlude() {
-        const interludeElements = ["in this place there is a generation",
-            "a generating space in the clearing",
-            "marked by mirrors whose entrance",
-            "a crumpled pane a place for resonance"];
+        const interludeElements = [["in this place there is a generation",
+            "a generating space in the clearing ",
+            "marked by mirrors whose entrance",],
+        ["for revenants to kneel and drink",
+            "an obsidian well for commands to bubble up",
+            "a plane for harvesting detritus"],
+        ["a catacomb with planets tucked into the corners",
+            "a current for conjecture in syrup.",
+            "in this place there is a germination"],
+        ["for coating the crevices of the tongue",
+            "a ring of sound for injecting",
+            "the earliest memories of possession"],
+        ["peels back hardened rinds",
+            "an ivory deer lurks in the trees",
+            "a heart caves in on itself"],
+        ["in this place there is a genome variation",
+            "a generating space where lace wings untie and tie again",
+            "metal vines choke plastic pipes"],
+        ["crystal goblets during a storm",
+            "rubies inject into the bloodstream",
+            "free eyes roll around a cracked platter"],
+        ["a match tossed into a slick mouth.",
+            "in this place there is a generating space",
+            "a lock breaks a generation"],
+        ["a velvet barrette in tar",
+            "a telescope twined in hair",
+            "electrophilic luster dipped in blue black",]
+        ["magnets filament my spine",
+        "from my mouth a delicacy",
+        "a gold fork pulls back my lips"]];
 
-        // var elementsDepth = creekElements.length;
+        var interludeDepth = interludeElements.length;
         var creekCreek = document.getElementById("creek");
-        for (var i = 0; i < 4; i++) {
-            var rand = getRndInteger(0, 4);
-            var interludeLine = document.createElement("span");
-            interludeLine.innerText = (interludeElements[rand] + " ");
+        var rand = getRndInteger(0, interludeDepth);
+        var interludeSet = interludeElements[rand];
+        console.log("INTERLUDE SET", interludeSet);
+        var interludeLine = " ";
+        for (var i = 0; i < 3; i++) {
+            // console.log("SET of ", i, ": " , interludeSet[i]);
+            interludeLine = (interludeSet[i] + " ");
+            console.log("LINE NO: ", i);
+            console.log("INTERLUDE LINE: ", interludeLine);
             creekCreek.append(interludeLine);
             var line_Break = document.createElement("br");
             creekCreek.append(line_Break);
