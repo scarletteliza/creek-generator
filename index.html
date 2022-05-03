@@ -218,9 +218,23 @@
         "from my mouth a delicacy",
         "a gold fork pulls back my lips"]];
 
+        const vaultMessages = ["a crumpled pane a place for resonance",
+            "a layer of toxic loam",
+            "a generating space for collecting",
+            "a knife opens petals",
+            "ink pulls taffy loose from bone fractals.",
+            "zebra mussels slice footsteps",
+            "sugar lined spoons",
+            "a glass heel",
+            "pulls stitches during the storm",
+            "a current generates a generation a linking",
+            "a mirror deep topography."];
+
         var interludeDepth = interludeElements.length;
+        var vaultDepth = vaultMessages.length;
         var creekCreek = document.getElementById("creek");
         var rand = getRndInteger(0, interludeDepth);
+        var vaultRand = getRndInteger(0, vaultDepth);
         var interludeSet = interludeElements[rand];
         console.log("INTERLUDE SET", interludeSet);
         var interludeLine = " ";
@@ -233,6 +247,10 @@
             var line_Break = document.createElement("br");
             creekCreek.append(line_Break);
         }
+        console.log("VAULT: ", vaultMessages[vaultRand]);
+        creekCreek.append(vaultMessages[vaultRand]);
+        var vaultBreak = document.createElement("br");
+        creekCreek.append(vaultBreak);
     }
 </script>
 
