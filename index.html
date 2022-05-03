@@ -12,7 +12,7 @@
 
     <style>
         html {
-            background: url(assets/creek-background.jpg);
+            background: url(assets/creek-background85.jpg);
             background-repeat: no-repeat;
             background-size: auto;
             color: white;
@@ -79,17 +79,17 @@
         </div>
     </div>
 
-    <div class="center">
-        <button; onclick="hideProjector();beginGenerator();style.display = 'none'" ;>Click here to begin</button>
+    <div id="start_button" class="center">
+        <button onclick="main()">Click here to begin</button>
     </div>
 
-
 </body>
-
-<!-- <script>
-    function setStage() {
-        document.body.style.backgroundImage = "assets/creek-background.jpg";
-    }
+<!-- 
+<script>
+    window.addEventListener('scroll', () => {
+        console.log(window.scrollY); //scrolled from top
+        console.log(window.innerHeight); //visible part of screen
+    })
 </script> -->
 
 <script>
@@ -99,12 +99,14 @@
 </script>
 
 <script>
+    var interval;
     (function titleFlicker() {
         var flickerSpeeds = [500, 1000, 250, 1000, 2000, 5000, 1000, 2000, 7000, 5000];
         flicker = flickerSpeeds[getRndInteger(0, 9)];
         index = 100;
         while (index > 0) {
-            var t = setInterval(function () {
+            interval = setInterval(function () {
+                if (!interval) return;
                 var ele = document.getElementById("blinking_title");
                 ele.style.visibility = (ele.style.visibility == 'hidden' ? '' : 'hidden');
             }, flicker);
@@ -112,93 +114,91 @@
             index--;
         }
     })()
-</script>
 
-<script>
     function hideProjector() {
-        var x = document.getElementById("blinking_title");
-        if (x.style.display === "none") {
-            x.style.display = "block";
-        } else {
-            x.style.display = "none";
-        }
+        clearInterval(interval);
+        interval = null;
+        document.getElementById("blinking_title").remove();
+        document.getElementById("start_button").remove();
     }
+
 </script>
 
 <script>
-    function beginGenerator() {
-        const creekElements = ['leaf', 'sapling', 'bark', 'silt', 'water', 'soil', 'faun',
-            'deer', 'spider', 'ivy', 'drosera', 'bleedingheart', 'roots',
-            'bark', 'flow', 'web', 'sap', 'bee', 'bramble', 'shrub', 'rot',
-            'pine', 'oak', 'owl', 'maple', 'pollen', 'stem', 'leaf', 'trunk',
-            'silt', 'geranium', 'stick', 'goldenrod', 'foxglove', 'aster',
-            'beech', 'ash', 'elm', 'fir', 'hemlock', 'hickory', 'pine',
-            'spruce', 'thorn', 'walnut', 'willow', 'fox', 'squirrel', 'bat',
-            'hare', 'mouse', 'possum', 'daggermoth', 'tick', 'orbweaver',
-            'firefly', 'fishingspider', 'butterfly', 'pebble', 'petal',
-            'mycelium', 'inkycap', 'detritus', 'worm', 'ant', 'sand', 'loam',
-            'blacktrumpet', 'falsemorel', 'breeze', 'tunnel'];
+    function main() {
+        hideProjector();
+        setInterval(function () {
+            var rand = getRndInteger(0, 10);
+            console.log("RAND ", rand%2 == 0);
+            if (rand % 2) {
+                beginInterlude();
+            }
+            else {
+                beginGenerator();
+            }
+        }, 10000)
+    }
+
+    function delay(duration) {
+        return new Promise(function (resolve, reject) {
+            setTimeout(resolve, duration);
+        });
+    }
+
+    async function beginGenerator() {
+        const creekElements = ["leaf", "sapling", "bark", "silt", "water", "soil",
+            "faun", "deer", "spider", "ivy", "drosera", "bleedingheart", "roots",
+            "bark", "flow", "web", "sap", "bee", "bramble", "shrub", "rot",
+            "pine", "oak", "owl", "maple", "pollen", "stem", "leaf", "trunk",
+            "silt", "geranium", "stick", "goldenrod", "foxglove", "aster",
+            "beech", "ash", "elm", "fir", "hemlock", "hickory", "pine",
+            "spruce", "thorn", "walnut", "willow", "fox", "squirrel", "bat",
+            "hare", "mouse", "possum", "daggermoth", "tick", "orbweaver",
+            "firefly", "fishingspider", "butterfly", "pebble", "petal",
+            "mycelium", "inkycap", "detritus", "worm", "ant", "sand", "loam",
+            "blacktrumpet", "falsemorel", "breeze", "tunnel"];
 
         var elementsDepth = creekElements.length;
-
         var creek = document.getElementById("creek");
         var landscape = 100;
         var currentLine = 0;
-        var interval;
-        var generation = 0;
-
-
         var rand = getRndInteger(0, elementsDepth);
-        // console.log("BEGIN GENERATOR");
-        // console.log("RAND INT", rand);
-
-        i = 0;
-        timer = 0;
-        interval = setInterval(function () {
+        console.log("REG LOGIC")
+        var wordText = creekElements[rand] + " ";
+        var lineWidth = (landscape / wordText.length);
+        while (currentLine <= lineWidth) {
             var word = document.createElement("span");
-            word.innerText = (creekElements[rand] + " ");
-            elementString = String(word);
-            var lineWidth = (landscape / word.innerText.length);
-            // console.log("WORD", word.innerText);
-            // console.log("WORD LENGTH", word.innerText.length);
-            // console.log("LINE WIDTH", lineWidth);
-            generation = lineWidth;
+            word.innerText = wordText;
+            console.log('APPENDING ', word);
             creek.append(word);
             currentLine++;
-            // console.log('CURRENT LINE', currentLine);
-            if (currentLine >= lineWidth) {
-                // console.log('IN IF LOOP');
-                clearInterval(interval);
-                currentLine = 0;
-                var lineBreak = document.createElement("br");
-                creek.append(lineBreak);
-                beginGenerator();
-            }
-        }, 400)
+            await delay(400);
+        }
+        console.log("IN IF FOR REG LOGIC");
+        currentLine = 0;
+        var lineBreak = document.createElement("br");
+        creek.append(lineBreak);
     }
 </script>
 
-<!-- <script>
+<script>
+    function beginInterlude() {
+        const interludeElements = ["in this place there is a generation",
+            "a generating space in the clearing",
+            "marked by mirrors whose entrance",
+            "a crumpled pane a place for resonance"];
 
-    var interlude = "A generating space.";
-    var interludePieces = interlude.split("");
-    var loopTimer;
-
-    console.log("TEXT", interlude);
-    console.log("ARRAY", interludePieces);
-    console.log("LENGTH", interludePieces.length);
-
-    function reveal() {
-        if (interludePieces.length > 0) {
-            document.getElementById("poetic_interlude").innerHTML += interludePieces.shift();
-        } else {
-            clearTimeout(loopTimer);
-            return false;
+        // var elementsDepth = creekElements.length;
+        var creekCreek = document.getElementById("creek");
+        for (var i = 0; i < 4; i++) {
+            var rand = getRndInteger(0, 4);
+            var interludeLine = document.createElement("span");
+            interludeLine.innerText = (interludeElements[rand] + " ");
+            creekCreek.append(interludeLine);
+            var line_Break = document.createElement("br");
+            creekCreek.append(line_Break);
         }
-        loopTimer = setTimeout("reveal()", 100);
     }
-    reveal();
-
-</script> -->
+</script>
 
 </html>
