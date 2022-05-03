@@ -15,3 +15,6 @@ THE CREEK GENERATOR.
 [flickers, disappears.]
 
 [text begins to scroll.]
+
+TO IMPLEMENT:
+- on click, random word, gets distorted or disappears
