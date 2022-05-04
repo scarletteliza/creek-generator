@@ -188,7 +188,7 @@
         return new Promise(async function (resolve, reject) {
             const interludeElements = ["in this place there is a generation",
                 "a generating space in the clearing ",
-                "marked by mirrors whose entrance", ,
+                "marked by mirrors whose entrance",
                 "for revenants to kneel and drink",
                 "an obsidian well for commands to bubble up",
                 "a plane for harvesting detritus",
@@ -241,6 +241,7 @@
                 var interludeText = interludeElements[(randInterlude + i) % interludeDepth] + " ";
                 var interludeArray = interludeText.split(" ");
                 var interludeWidth = (interludeArray.length - 1);
+                console.log("INT ARRAY ", interludeArray);
                 console.log("INTERLUDE WIDTH: ", interludeWidth);
                 while (interludeIndex < interludeWidth) {
                     var poemWord = document.createElement("span");
@@ -248,7 +249,7 @@
                     console.log('APPENDING ', poemWord + " ");
                     creek.append(poemWord);
                     interludeIndex++;
-                    await delay(400);
+                    await delay(600);
                 }
                 console.log("IN IF FOR REG LOGIC");
                 interludeIndex = 0;
