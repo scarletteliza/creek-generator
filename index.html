@@ -126,8 +126,8 @@
     async function main() {
         hideProjector();
         while (true) {
-            var rand = getRndInteger(0, 10);
-            if (rand % 2) {
+            var rand = getRndInteger(0, 100);
+            if (rand % 9) {
                 console.log("GENERATOR! ", rand);
                 await beginGenerator();
             }
@@ -188,7 +188,7 @@
         return new Promise(async function (resolve, reject) {
             const interludeElements = ["in this place there is a generation",
                 "a generating space in the clearing ",
-                "marked by mirrors whose entrance", ,
+                "marked by mirrors whose entrance",
                 "for revenants to kneel and drink",
                 "an obsidian well for commands to bubble up",
                 "a plane for harvesting detritus",
@@ -241,6 +241,7 @@
                 var interludeText = interludeElements[(randInterlude + i) % interludeDepth] + " ";
                 var interludeArray = interludeText.split(" ");
                 var interludeWidth = (interludeArray.length - 1);
+                console.log("INT ARRAY ", interludeArray);
                 console.log("INTERLUDE WIDTH: ", interludeWidth);
                 while (interludeIndex < interludeWidth) {
                     var poemWord = document.createElement("span");
@@ -248,13 +249,33 @@
                     console.log('APPENDING ', poemWord + " ");
                     creek.append(poemWord);
                     interludeIndex++;
-                    await delay(400);
+                    await delay(600);
                 }
                 console.log("IN IF FOR REG LOGIC");
                 interludeIndex = 0;
                 var lineBreak = document.createElement("br");
                 creek.append(lineBreak);
             }
+            var vaultDepth = vaultMessages.length;
+            var randVault = getRndInteger(0, vaultDepth);
+            var vaultIndex = 0;
+
+            var vaultText = vaultMessages[randVault];
+            var vaultArray = vaultText.split("");
+            var vaultWidth = vaultArray.length;
+            
+            while (vaultIndex < vaultWidth) {
+                var vaultLine = document.createElement("span");
+                vaultLine.innerText = vaultArray[vaultIndex];
+                creek.append(vaultLine);
+                vaultIndex++
+                await delay(200);
+            }
+            console.log("IN IF FOR REG LOGIC");
+            interludeIndex = 0;
+            var lineBreak = document.createElement("br");
+            creek.append(lineBreak);
+            await delay(500);
             resolve();
         });
     }
