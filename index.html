@@ -47,7 +47,8 @@
             flex-direction: column;
             text-overflow: clip;
             white-space: nowrap;
-            overflow: hidden;
+            overflow-x: hidden;
+            overflow-y: auto;
         }
 
         .creek_text {
@@ -185,36 +186,36 @@
 
     function beginInterlude() {
         return new Promise(async function (resolve, reject) {
-            const interludeElements = [["in this place there is a generation",
+            const interludeElements = ["in this place there is a generation",
                 "a generating space in the clearing ",
-                "marked by mirrors whose entrance",],
-            ["for revenants to kneel and drink",
+                "marked by mirrors whose entrance", ,
+                "for revenants to kneel and drink",
                 "an obsidian well for commands to bubble up",
-                "a plane for harvesting detritus"],
-            ["a catacomb with planets tucked into the corners",
+                "a plane for harvesting detritus",
+                "a catacomb with planets tucked into the corners",
                 "a current for conjecture in syrup.",
-                "in this place there is a germination"],
-            ["for coating the crevices of the tongue",
+                "in this place there is a germination",
+                "for coating the crevices of the tongue",
                 "a ring of sound for injecting",
-                "the earliest memories of possession"],
-            ["peels back hardened rinds",
+                "the earliest memories of possession",
+                "peels back hardened rinds",
                 "an ivory deer lurks in the trees",
-                "a heart caves in on itself"],
-            ["in this place there is a genome variation",
+                "a heart caves in on itself",
+                "in this place there is a genome variation",
                 "a generating space where lace wings untie and tie again",
-                "metal vines choke plastic pipes"],
-            ["crystal goblets during a storm",
+                "metal vines choke plastic pipes",
+                "crystal goblets during a storm",
                 "rubies inject into the bloodstream",
-                "free eyes roll around a cracked platter"],
-            ["a match tossed into a slick mouth.",
+                "free eyes roll around a cracked platter",
+                "a match tossed into a slick mouth.",
                 "in this place there is a generating space",
-                "a lock breaks a generation"],
-            ["a velvet barrette in tar",
+                "a lock breaks a generation",
+                "a velvet barrette in tar",
                 "a telescope twined in hair",
-                "electrophilic luster dipped in blue black",]
-            ["magnets filament my spine",
-            "from my mouth a delicacy",
-            "a gold fork pulls back my lips"]];
+                "electrophilic luster dipped in blue black",
+                "magnets filament my spine",
+                "from my mouth a delicacy",
+                "a gold fork pulls back my lips"];
 
             const vaultMessages = ["a crumpled pane a place for resonance",
                 "a layer of toxic loam",
@@ -227,29 +228,33 @@
                 "pulls stitches during the storm",
                 "a current generates a generation a linking",
                 "a mirror deep topography."];
-
             var interludeDepth = interludeElements.length;
-            var vaultDepth = vaultMessages.length;
-            var creekCreek = document.getElementById("creek");
-            var rand = getRndInteger(0, interludeDepth);
-            var vaultRand = getRndInteger(0, vaultDepth);
-            var interludeSet = interludeElements[rand];
-            console.log("INTERLUDE SET", interludeSet);
-            var interludeLine = " ";
-            for (var i = 0; i < 3; i++) {
-                interludeLine = (interludeSet[i] + " ");
-                console.log("LINE NO: ", i);
-                console.log("INTERLUDE LINE: ", interludeLine);
-                creekCreek.append(interludeLine);
-                var line_Break = document.createElement("br");
-                creekCreek.append(line_Break);
-                await delay(400);
+            var randInterlude = getRndInteger(0, interludeDepth);
+            for (i = 0; i < 3; i++) {
+
+                var creek = document.getElementById("creek");
+                var landscape = 100;
+                var interludeIndex = 0;
+
+                console.log("RAND INDEX of interlude: ", randInterlude, interludeElements[randInterlude]);
+                console.log("REG LOGIC")
+                var interludeText = interludeElements[(randInterlude + i) % interludeDepth] + " ";
+                var interludeArray = interludeText.split(" ");
+                var interludeWidth = (interludeArray.length - 1);
+                console.log("INTERLUDE WIDTH: ", interludeWidth);
+                while (interludeIndex < interludeWidth) {
+                    var poemWord = document.createElement("span");
+                    poemWord.innerText = (interludeArray[interludeIndex] + " ");
+                    console.log('APPENDING ', poemWord + " ");
+                    creek.append(poemWord);
+                    interludeIndex++;
+                    await delay(400);
+                }
+                console.log("IN IF FOR REG LOGIC");
+                interludeIndex = 0;
+                var lineBreak = document.createElement("br");
+                creek.append(lineBreak);
             }
-            console.log("VAULT: ", vaultMessages[vaultRand]);
-            creekCreek.append(vaultMessages[vaultRand]);
-            var vaultBreak = document.createElement("br");
-            creekCreek.append(vaultBreak);
-            await delay(400);
             resolve();
         });
     }
