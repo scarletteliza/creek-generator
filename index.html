@@ -256,6 +256,17 @@
                 while (interludeIndex < interludeWidth) {
                     var poemWord = document.createElement("span");
                     poemWord.innerText = (interludeArray[interludeIndex] + " ");
+
+                    var vaultInterference = getRndInteger(0, landscape);
+                    var greyArray = ["dimgray", "gray", "darkgray", "silver", "gainsboro"];
+                    if (vaultInterference % 2) {
+                        console.log("IN VAULT INTERFERENCE");
+                        poemWord.addEventListener("click", function () {
+                            console.log("CLICK");
+                            this.style.color = greyArray[vaultInterference % 5];
+                        });
+                    }
+
                     console.log('APPENDING ', poemWord + " ");
                     creek.append(poemWord);
                     interludeIndex++;
