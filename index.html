@@ -31,6 +31,7 @@
             font-family: "Crimson Pro", serif;
             font-size: 0.75em;
             border: none;
+            cursor: pointer;
         }
 
         .center {
@@ -127,7 +128,7 @@
         hideProjector();
         while (true) {
             var rand = getRndInteger(0, 100);
-            if (rand % 9) {
+            if (rand % 3) {
                 console.log("GENERATOR! ", rand);
                 await beginGenerator();
             }
@@ -169,7 +170,16 @@
             var lineWidth = (landscape / wordText.length);
             while (currentLine <= lineWidth) {
                 var word = document.createElement("span");
+                var target = word;
                 word.style.color = "grey";
+                var interference = getRndInteger(0, landscape);
+                if (interference % 2) {
+                    console.log("IN INTERFERENCE");
+                    word.addEventListener("click", function () {
+                        console.log("CLICK");
+                        this.style.color = "black";
+                    });
+                }
                 word.innerText = wordText;
                 console.log('APPENDING ', word);
                 creek.append(word);
@@ -246,6 +256,17 @@
                 while (interludeIndex < interludeWidth) {
                     var poemWord = document.createElement("span");
                     poemWord.innerText = (interludeArray[interludeIndex] + " ");
+
+                    var vaultInterference = getRndInteger(0, landscape);
+                    var greyArray = ["dimgray", "gray", "darkgray", "silver", "gainsboro"];
+                    if (vaultInterference % 2) {
+                        console.log("IN VAULT INTERFERENCE");
+                        poemWord.addEventListener("click", function () {
+                            console.log("CLICK");
+                            this.style.color = greyArray[vaultInterference % 5];
+                        });
+                    }
+
                     console.log('APPENDING ', poemWord + " ");
                     creek.append(poemWord);
                     interludeIndex++;
@@ -263,7 +284,7 @@
             var vaultText = vaultMessages[randVault];
             var vaultArray = vaultText.split("");
             var vaultWidth = vaultArray.length;
-            
+
             while (vaultIndex < vaultWidth) {
                 var vaultLine = document.createElement("span");
                 vaultLine.innerText = vaultArray[vaultIndex];
