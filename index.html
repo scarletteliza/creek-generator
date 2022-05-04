@@ -98,9 +98,7 @@
     function getRndInteger(min, max) {
         return Math.floor(Math.random() * (max - min)) + min;
     }
-</script>
 
-<script>
     var interval;
     (function titleFlicker() {
         var flickerSpeeds = [500, 1000, 250, 1000, 2000, 5000, 1000, 2000, 7000, 5000];
@@ -124,22 +122,20 @@
         document.getElementById("start_button").remove();
     }
 
-</script>
-
-<script>
-    function main() {
+    async function main() {
         hideProjector();
-        setInterval(function () {
+        while (true) {
             var rand = getRndInteger(0, 10);
             if (rand % 2) {
                 console.log("GENERATOR! ", rand);
-                beginGenerator();
+                await beginGenerator();
             }
             else {
                 console.log("INTERLUDE! ", rand);
-                beginInterlude();
+                await beginInterlude();
             }
-        }, 10000)
+            // await delay(500);
+        }
     }
 
     function delay(duration) {
@@ -149,108 +145,113 @@
     }
 
     async function beginGenerator() {
-        const creekElements = ["leaf", "sapling", "bark", "silt", "water", "soil",
-            "faun", "deer", "spider", "ivy", "drosera", "bleedingheart", "roots",
-            "bark", "flow", "web", "sap", "bee", "bramble", "shrub", "rot",
-            "pine", "oak", "owl", "maple", "pollen", "stem", "leaf", "trunk",
-            "silt", "geranium", "stick", "goldenrod", "foxglove", "aster",
-            "beech", "ash", "elm", "fir", "hemlock", "hickory", "pine",
-            "spruce", "thorn", "walnut", "willow", "fox", "squirrel", "bat",
-            "hare", "mouse", "possum", "daggermoth", "tick", "orbweaver",
-            "firefly", "fishingspider", "butterfly", "pebble", "petal",
-            "mycelium", "inkycap", "detritus", "worm", "ant", "sand", "loam",
-            "blacktrumpet", "falsemorel", "breeze", "tunnel"];
+        return new Promise(async function (resolve, reject) {
+            const creekElements = ["leaf", "sapling", "bark", "silt", "water", "soil",
+                "faun", "deer", "spider", "ivy", "drosera", "bleedingheart", "roots",
+                "bark", "flow", "web", "sap", "bee", "bramble", "shrub", "rot",
+                "pine", "oak", "owl", "maple", "pollen", "stem", "leaf", "trunk",
+                "silt", "geranium", "stick", "goldenrod", "foxglove", "aster",
+                "beech", "ash", "elm", "fir", "hemlock", "hickory", "pine",
+                "spruce", "thorn", "walnut", "willow", "fox", "squirrel", "bat",
+                "hare", "mouse", "possum", "daggermoth", "tick", "orbweaver",
+                "firefly", "fishingspider", "butterfly", "pebble", "petal",
+                "mycelium", "inkycap", "detritus", "worm", "ant", "sand", "loam",
+                "blacktrumpet", "falsemorel", "breeze", "tunnel"];
 
-        var elementsDepth = creekElements.length;
-        var creek = document.getElementById("creek");
-        var landscape = 100;
-        var currentLine = 0;
-        var rand = getRndInteger(0, elementsDepth);
-        console.log("REG LOGIC")
-        var wordText = creekElements[rand] + " ";
-        var lineWidth = (landscape / wordText.length);
-        while (currentLine <= lineWidth) {
-            var word = document.createElement("span");
-            word.style.color = "grey";
-            word.innerText = wordText;
-            console.log('APPENDING ', word);
-            creek.append(word);
-            currentLine++;
-            await delay(400);
-        }
-        console.log("IN IF FOR REG LOGIC");
-        currentLine = 0;
-        var lineBreak = document.createElement("br");
-        creek.append(lineBreak);
+            var elementsDepth = creekElements.length;
+            var creek = document.getElementById("creek");
+            var landscape = 100;
+            var currentLine = 0;
+            var rand = getRndInteger(0, elementsDepth);
+            console.log("REG LOGIC")
+            var wordText = creekElements[rand] + " ";
+            var lineWidth = (landscape / wordText.length);
+            while (currentLine <= lineWidth) {
+                var word = document.createElement("span");
+                word.style.color = "grey";
+                word.innerText = wordText;
+                console.log('APPENDING ', word);
+                creek.append(word);
+                currentLine++;
+                await delay(400);
+            }
+            console.log("IN IF FOR REG LOGIC");
+            currentLine = 0;
+            var lineBreak = document.createElement("br");
+            creek.append(lineBreak);
+            resolve();
+        });
     }
-</script>
 
-<script>
     function beginInterlude() {
-        const interludeElements = [["in this place there is a generation",
-            "a generating space in the clearing ",
-            "marked by mirrors whose entrance",],
-        ["for revenants to kneel and drink",
-            "an obsidian well for commands to bubble up",
-            "a plane for harvesting detritus"],
-        ["a catacomb with planets tucked into the corners",
-            "a current for conjecture in syrup.",
-            "in this place there is a germination"],
-        ["for coating the crevices of the tongue",
-            "a ring of sound for injecting",
-            "the earliest memories of possession"],
-        ["peels back hardened rinds",
-            "an ivory deer lurks in the trees",
-            "a heart caves in on itself"],
-        ["in this place there is a genome variation",
-            "a generating space where lace wings untie and tie again",
-            "metal vines choke plastic pipes"],
-        ["crystal goblets during a storm",
-            "rubies inject into the bloodstream",
-            "free eyes roll around a cracked platter"],
-        ["a match tossed into a slick mouth.",
-            "in this place there is a generating space",
-            "a lock breaks a generation"],
-        ["a velvet barrette in tar",
-            "a telescope twined in hair",
-            "electrophilic luster dipped in blue black",]
-        ["magnets filament my spine",
-        "from my mouth a delicacy",
-        "a gold fork pulls back my lips"]];
+        return new Promise(async function (resolve, reject) {
+            const interludeElements = [["in this place there is a generation",
+                "a generating space in the clearing ",
+                "marked by mirrors whose entrance",],
+            ["for revenants to kneel and drink",
+                "an obsidian well for commands to bubble up",
+                "a plane for harvesting detritus"],
+            ["a catacomb with planets tucked into the corners",
+                "a current for conjecture in syrup.",
+                "in this place there is a germination"],
+            ["for coating the crevices of the tongue",
+                "a ring of sound for injecting",
+                "the earliest memories of possession"],
+            ["peels back hardened rinds",
+                "an ivory deer lurks in the trees",
+                "a heart caves in on itself"],
+            ["in this place there is a genome variation",
+                "a generating space where lace wings untie and tie again",
+                "metal vines choke plastic pipes"],
+            ["crystal goblets during a storm",
+                "rubies inject into the bloodstream",
+                "free eyes roll around a cracked platter"],
+            ["a match tossed into a slick mouth.",
+                "in this place there is a generating space",
+                "a lock breaks a generation"],
+            ["a velvet barrette in tar",
+                "a telescope twined in hair",
+                "electrophilic luster dipped in blue black",]
+            ["magnets filament my spine",
+            "from my mouth a delicacy",
+            "a gold fork pulls back my lips"]];
 
-        const vaultMessages = ["a crumpled pane a place for resonance",
-            "a layer of toxic loam",
-            "a generating space for collecting",
-            "a knife opens petals",
-            "ink pulls taffy loose from bone fractals.",
-            "zebra mussels slice footsteps",
-            "sugar lined spoons",
-            "a glass heel",
-            "pulls stitches during the storm",
-            "a current generates a generation a linking",
-            "a mirror deep topography."];
+            const vaultMessages = ["a crumpled pane a place for resonance",
+                "a layer of toxic loam",
+                "a generating space for collecting",
+                "a knife opens petals",
+                "ink pulls taffy loose from bone fractals.",
+                "zebra mussels slice footsteps",
+                "sugar lined spoons",
+                "a glass heel",
+                "pulls stitches during the storm",
+                "a current generates a generation a linking",
+                "a mirror deep topography."];
 
-        var interludeDepth = interludeElements.length;
-        var vaultDepth = vaultMessages.length;
-        var creekCreek = document.getElementById("creek");
-        var rand = getRndInteger(0, interludeDepth);
-        var vaultRand = getRndInteger(0, vaultDepth);
-        var interludeSet = interludeElements[rand];
-        console.log("INTERLUDE SET", interludeSet);
-        var interludeLine = " ";
-        for (var i = 0; i < 3; i++) {
-            // console.log("SET of ", i, ": " , interludeSet[i]);
-            interludeLine = (interludeSet[i] + " ");
-            console.log("LINE NO: ", i);
-            console.log("INTERLUDE LINE: ", interludeLine);
-            creekCreek.append(interludeLine);
-            var line_Break = document.createElement("br");
-            creekCreek.append(line_Break);
-        }
-        console.log("VAULT: ", vaultMessages[vaultRand]);
-        creekCreek.append(vaultMessages[vaultRand]);
-        var vaultBreak = document.createElement("br");
-        creekCreek.append(vaultBreak);
+            var interludeDepth = interludeElements.length;
+            var vaultDepth = vaultMessages.length;
+            var creekCreek = document.getElementById("creek");
+            var rand = getRndInteger(0, interludeDepth);
+            var vaultRand = getRndInteger(0, vaultDepth);
+            var interludeSet = interludeElements[rand];
+            console.log("INTERLUDE SET", interludeSet);
+            var interludeLine = " ";
+            for (var i = 0; i < 3; i++) {
+                interludeLine = (interludeSet[i] + " ");
+                console.log("LINE NO: ", i);
+                console.log("INTERLUDE LINE: ", interludeLine);
+                creekCreek.append(interludeLine);
+                var line_Break = document.createElement("br");
+                creekCreek.append(line_Break);
+                await delay(400);
+            }
+            console.log("VAULT: ", vaultMessages[vaultRand]);
+            creekCreek.append(vaultMessages[vaultRand]);
+            var vaultBreak = document.createElement("br");
+            creekCreek.append(vaultBreak);
+            await delay(400);
+            resolve();
+        });
     }
 </script>
 
