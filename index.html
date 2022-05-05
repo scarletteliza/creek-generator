@@ -170,7 +170,7 @@
                 word.innerText = wordText;
                 creek.append(word);
                 currentLine++;
-                await delay(400);
+                await delay(350);
             }
             currentLine = 0;
             var lineBreak = document.createElement("br");
@@ -281,7 +281,7 @@
 
                     creek.append(poemWord);
                     interludeIndex++;
-                    await delay(600);
+                    await delay(500);
                 }
                 interludeIndex = 0;
                 var lineBreak = document.createElement("br");
@@ -305,7 +305,7 @@
             interludeIndex = 0;
             var lineBreak = document.createElement("br");
             creek.append(lineBreak);
-            await delay(500);
+            await delay(400);
             resolve();
         });
     }
