@@ -121,7 +121,7 @@
         hideProjector();
         while (true) {
             var rand = getRndInteger(0, 100);
-            if (rand % 9) {
+            if (rand % 5) {
                 await beginGenerator();
             }
             else {
@@ -182,13 +182,13 @@
     function beginInterlude() {
         return new Promise(async function (resolve, reject) {
             const interludeElements = ["in this place there is a generation",
-                "a generating space in the clearing ",
+                "a generating space in the clearing",
                 "marked by mirrors whose entrance",
                 "for revenants to kneel and drink",
                 "an obsidian well for commands to bubble up",
                 "a plane for harvesting detritus",
                 "a catacomb with planets tucked into the corners",
-                "a current for conjecture in syrup.",
+                "a current for conjecture in syrup",
                 "in this place there is a germination",
                 "for coating the crevices of the tongue",
                 "a ring of sound for injecting",
@@ -202,7 +202,7 @@
                 "crystal goblets during a storm",
                 "rubies inject into the bloodstream",
                 "free eyes roll around a cracked platter",
-                "a match tossed into a slick mouth.",
+                "a match tossed into a slick mouth",
                 "in this place there is a generating space",
                 "a lock breaks a generation",
                 "a velvet barrette in tar",
@@ -213,25 +213,25 @@
                 "a gold fork pulls back my lips",
                 "at earliest luster",
                 "wield a knife for drinking",
-                "ring rubies to break the current.",
+                "ring rubies to break the current",
                 "a fork linking marked harvest mirrors",
-                "again slick with crumpled magnets.",
+                "again slick with crumpled magnets",
                 "a clearing generates",
                 "into mouth memories served on a platter",
                 "a deep delicacy lurks, kneels",
                 "pulls hardened zebra mussels dipped in black",
-                "a filament crystal.",
-                "metal matches sound, wings, a bone barrette lodged in a telescope.",
+                "a filament crystal",
+                "metal matches sound, wings, a bone barrette lodged in a telescope",
                 "toss detritus free",
                 "ivory peels lips open.",
                 "a pane of toxic velvet twined with trees",
                 "tied back into crevices",
                 "slice vines into place from the loam syrup",
-                "at earliest luster collect my coating.",
-                "spine resonance.",
-                "conjecture whose heel goblets ink themselves onto the heart.",
-                "my tongue rinds a topography of the bloodstream around commands.",
-                "revenants in caves bring forth deer.",
+                "at earliest luster collect my coating",
+                "spine resonance",
+                "conjecture whose heel goblets ink themselves onto the heart",
+                "my tongue rinds a topography of the bloodstream around commands",
+                "revenants in caves bring forth deer",
                 "germination sugar generating catacombs",
                 "deep beneath this mirror",
                 "inject gold into the locks"];
@@ -240,21 +240,21 @@
                 "a layer of toxic loam",
                 "a generating space for collecting",
                 "a knife opens petals",
-                "ink pulls taffy loose from bone fractals.",
+                "ink pulls taffy loose from bone fractals",
                 "zebra mussels slice footsteps",
                 "sugar lined spoons",
                 "a glass heel",
                 "pulls stitches during the storm",
                 "a current generates a generation a linking",
-                "a mirror deep topography.",
+                "a mirror deep topography",
                 "open the glass entrance, electrophilic",
                 "tucked far from tar",
                 "at earliest luster loose a genome generation",
                 "choke itself of lace storm, of space obsidian",
-                "stitches layered with taffy.",
-                "a well of eyes deep blue filled with petal variation.",
+                "stitches layered with taffy",
+                "a well of eyes deep blue filled with petal variation",
                 "injecting plastic fractals",
-                "planets cracked for possession."];
+                "planets cracked for possession"];
             var interludeDepth = interludeElements.length;
             var randInterlude = getRndInteger(0, interludeDepth);
             for (i = 0; i < 3; i++) {
