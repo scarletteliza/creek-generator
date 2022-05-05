@@ -121,15 +121,12 @@
         hideProjector();
         while (true) {
             var rand = getRndInteger(0, 100);
-            if (rand % 3) {
-                console.log("GENERATOR! ", rand);
+            if (rand % 9) {
                 await beginGenerator();
             }
             else {
-                console.log("INTERLUDE! ", rand);
                 await beginInterlude();
             }
-            // await delay(500);
         }
     }
 
@@ -158,7 +155,6 @@
             var landscape = 100;
             var currentLine = 0;
             var rand = getRndInteger(0, elementsDepth);
-            console.log("REG LOGIC")
             var wordText = creekElements[rand] + " ";
             var lineWidth = (landscape / wordText.length);
             while (currentLine <= lineWidth) {
@@ -167,19 +163,15 @@
                 word.style.color = "grey";
                 var interference = getRndInteger(0, landscape);
                 if (interference % 2) {
-                    console.log("IN INTERFERENCE");
                     word.addEventListener("click", function () {
-                        console.log("CLICK");
                         this.style.color = "black";
                     });
                 }
                 word.innerText = wordText;
-                console.log('APPENDING ', word);
                 creek.append(word);
                 currentLine++;
                 await delay(400);
             }
-            console.log("IN IF FOR REG LOGIC");
             currentLine = 0;
             var lineBreak = document.createElement("br");
             creek.append(lineBreak);
@@ -237,7 +229,7 @@
                 "slice vines into place from the loam syrup",
                 "at earliest luster collect my coating.",
                 "spine resonance.",
-                "conjecture variation whose heel goblets ink themselves onto the heart.",
+                "conjecture whose heel goblets ink themselves onto the heart.",
                 "my tongue rinds a topography of the bloodstream around commands.",
                 "revenants in caves bring forth deer.",
                 "germination sugar generating catacombs",
@@ -271,13 +263,9 @@
                 var landscape = 100;
                 var interludeIndex = 0;
 
-                console.log("RAND INDEX of interlude: ", randInterlude, interludeElements[randInterlude]);
-                console.log("REG LOGIC")
                 var interludeText = interludeElements[(randInterlude + i) % interludeDepth] + " ";
                 var interludeArray = interludeText.split(" ");
                 var interludeWidth = (interludeArray.length - 1);
-                console.log("INT ARRAY ", interludeArray);
-                console.log("INTERLUDE WIDTH: ", interludeWidth);
                 while (interludeIndex < interludeWidth) {
                     var poemWord = document.createElement("span");
                     poemWord.innerText = (interludeArray[interludeIndex] + " ");
@@ -285,19 +273,16 @@
                     var vaultInterference = getRndInteger(0, landscape);
                     var greyArray = ["dimgray", "gray", "darkgray", "silver", "gainsboro"];
                     if (vaultInterference % 2) {
-                        console.log("IN VAULT INTERFERENCE");
                         poemWord.addEventListener("click", function () {
-                            console.log("CLICK");
+                            this.style.cursor = "pointer";
                             this.style.color = greyArray[vaultInterference % 5];
                         });
                     }
 
-                    console.log('APPENDING ', poemWord + " ");
                     creek.append(poemWord);
                     interludeIndex++;
                     await delay(600);
                 }
-                console.log("IN IF FOR REG LOGIC");
                 interludeIndex = 0;
                 var lineBreak = document.createElement("br");
                 creek.append(lineBreak);
@@ -317,7 +302,6 @@
                 vaultIndex++
                 await delay(200);
             }
-            console.log("IN IF FOR REG LOGIC");
             interludeIndex = 0;
             var lineBreak = document.createElement("br");
             creek.append(lineBreak);
