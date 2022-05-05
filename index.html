@@ -91,7 +91,7 @@
 
 <script>
     function getRndInteger(min, max) {
-        return Math.floor(Math.random() * (max - min)) + min;
+        return Math.floor(Math.random() * (max - min + 1)) + min;
     }
 
     var interval;
@@ -120,7 +120,7 @@
     async function main() {
         hideProjector();
         while (true) {
-            var rand = getRndInteger(0, 100);
+            var rand = getRndInteger(0, 20);
             if (rand % 5) {
                 await beginGenerator();
             }
@@ -223,7 +223,7 @@
                 "a filament crystal",
                 "metal matches sound, wings, a bone barrette lodged in a telescope",
                 "toss detritus free",
-                "ivory peels lips open.",
+                "ivory peels lips open",
                 "a pane of toxic velvet twined with trees",
                 "tied back into crevices",
                 "slice vines into place from the loam syrup",
