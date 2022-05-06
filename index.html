@@ -73,12 +73,11 @@
             .container {
                 overflow-x: auto;
             }
-            
+
             .creek_text {
                 font-size: 18px;
             }
         }
-
     </style>
 </head>
 
@@ -268,9 +267,34 @@
                 "a well of eyes deep blue filled with petal variation",
                 "injecting plastic fractals",
                 "planets cracked for possession"];
+
+
+            const interferenceArray = ["peels", "vines", "lips", "well", "conjecture", "deer", "footsteps",
+                "storm", "eyes", "black", "bloodstream", "petals", "lock", "syrup",
+                "pane", "whose", "layer", "cracked", "drink", "variation", "glass",
+                "bone", "velvet", "gold", "mouth", "mussels", "place", "roll",
+                "coating", "corners", "back", "loose", "space", "fractals", "marked",
+                "hair", "memories", "telescope", "opens", "tar", "heart", "entrance",
+                "magnets", "resonance", "clearing", "commands", "caves", "mirrors",
+                "tossed", "tucked", "goblets", "in", "harvesting", "pipes", "kneel",
+                "generating", "reverants", "zebra", "catacomb", "ink", "generates",
+                "metal", "choke", "tie", "spoons", "breaks", "untie", "heel", "free",
+                "loam", "injecting", "pulls", "topography", "genome", "plastic",
+                "possession", "mirror", "slice", "ring", "planets", "collecting",
+                "delicacy", "taffy", "barrette", "twined", "inject", "blue",
+                "earliest", "crevices", "match", "filament", "trees", "crumpled",
+                "obsidian", "lined", "bubble", "knife", "fork", "sugar", "deep",
+                "lurks", "ivory", "dipped", "lace", "germination", "hardened",
+                "platter", "plane", "wings", "generation", "around", "linking",
+                "rubies", "electrophilic", "spine", "current", "stitches", "slick",
+                "luster", "toxic", "tongue", "detritus", "rinds", "crystal", "sound"];
+
             var interludeDepth = interludeElements.length;
             var randInterlude = getRndInteger(0, interludeDepth);
-            for (i = 0; i < 3; i++) {
+            var interludeLength = getRndInteger(0, 7);
+
+            console.log("LENGTH OF INTERLUDE: ", interludeLength);
+            for (i = 0; i < interludeLength; i++) {
 
                 var creek = document.getElementById("creek");
                 var landscape = 100;
@@ -282,15 +306,20 @@
                 while (interludeIndex < interludeWidth) {
                     var poemWord = document.createElement("span");
                     poemWord.innerText = (interludeArray[interludeIndex] + " ");
-
                     var vaultInterference = getRndInteger(0, landscape);
+                    // var interferenceLine = interferenceArray[vaultInterference % interferenceArray.length];
                     var greyArray = ["dimgray", "gray", "darkgray", "silver", "gainsboro"];
-                    if (vaultInterference % 2) {
-                        poemWord.addEventListener("click", function () {
-                            this.style.cursor = "pointer";
-                            this.style.color = greyArray[vaultInterference % 5];
-                        });
-                    }
+
+                    // poemWord.addEventListener("hover", function () {
+                    //     this.style.cursor = "pointer";
+                    // });
+                    poemWord.addEventListener("click", function () {
+                        this.style.color = greyArray[vaultInterference % 5];
+                        console.log("OLD WORD: ", this.innerText);
+                        this.innerText = (interferenceArray[getRndInteger(0, landscape) % interferenceArray.length] + " ");
+                        console.log("NEW WORD SHOULD BE: ", interferenceArray[getRndInteger(0, landscape) % interferenceArray.length]);
+                        console.log("NEW WORD: ", this.innerText);
+                    });
 
                     creek.append(poemWord);
                     interludeIndex++;
@@ -312,6 +341,7 @@
                 var vaultLine = document.createElement("span");
                 vaultLine.innerText = vaultArray[vaultIndex];
                 creek.append(vaultLine);
+                console.log("VAULT LINE: ", vaultLine);
                 vaultIndex++
                 await delay(200);
             }
