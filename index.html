@@ -68,6 +68,17 @@
             font-size: 1.25em;
             text-align: center;
         }
+
+        @media all and (max-width: 480px) {
+            .container {
+                overflow-x: auto;
+            }
+            
+            .creek_text {
+                font-size: 18px;
+            }
+        }
+
     </style>
 </head>
 
@@ -91,6 +102,7 @@
 </body>
 
 <script>
+
     function getRndInteger(min, max) {
         return Math.floor(Math.random() * (max - min)) + min;
     }
