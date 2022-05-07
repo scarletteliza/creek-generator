@@ -58,6 +58,7 @@
             font-family: 'Crimson Pro', serif;
             font-size: 24px;
             cursor: pointer;
+
         }
 
         .projector {
@@ -292,10 +293,9 @@
 
             var interludeDepth = interludeElements.length;
             var randInterlude = getRndInteger(0, interludeDepth);
-            var interludeLength = getRndInteger(0, 7);
+            var interludeLength = getRndInteger(0, 5);
             // var interludeLength = 0;
 
-            console.log("LENGTH OF INTERLUDE: ", interludeLength);
             for (i = 0; i <= interludeLength; i++) {
 
                 var creek = document.getElementById("creek");
@@ -308,18 +308,10 @@
                     var poemWord = document.createElement("span");
                     poemWord.innerText = (interludeArray[interludeIndex] + " ");
                     var vaultInterference = getRndInteger(0, landscape);
-                    // var interferenceLine = interferenceArray[vaultInterference % interferenceArray.length];
                     var greyArray = ["dimgray", "gray", "darkgray", "silver", "gainsboro"];
-
-                    // poemWord.addEventListener("hover", function () {
-                    //     this.style.cursor = "pointer";
-                    // });
                     poemWord.addEventListener("click", function () {
                         this.style.color = greyArray[vaultInterference % 5];
-                        console.log("OLD WORD: ", this.innerText);
                         this.innerText = (interferenceArray[getRndInteger(0, landscape) % interferenceArray.length] + " ");
-                        console.log("NEW WORD SHOULD BE: ", interferenceArray[getRndInteger(0, landscape) % interferenceArray.length]);
-                        console.log("NEW WORD: ", this.innerText);
                     });
 
                     creek.append(poemWord);
@@ -342,10 +334,13 @@
                 var vaultLine = document.createElement("span");
                 var vaultWord = "";
                 vaultLine.innerText = vaultArray[vaultIndex];
-                console.log("VAULT ARRAY INDEX: ", vaultIndex);
-                console.log("VAULT ARRAY INDEX: ", vaultArray[vaultIndex]);
+
+                vaultLine.addEventListener("click", function () {
+                        this.style.color = "grey";
+                        this.innerText = (interferenceArray[getRndInteger(0, landscape) % interferenceArray.length] + " ");
+                    });
+
                 creek.append(vaultLine);
-                console.log("VAULT LINE: ", vaultLine);
                 vaultIndex++
                 await delay(200);
             }
